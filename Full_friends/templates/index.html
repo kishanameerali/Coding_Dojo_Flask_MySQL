@@ -26,7 +26,7 @@
                       <td>{{friend['first_name']}}</td>
                       <td>{{friend['last_name']}}</td>
                       <td>{{friend['email']}}</td>
-                      <td><form class="action_button" action="/friends/{{friend['id']}}/edit" method="post">
+                      <td><form class="action_button" action="/friends/{{friend['id']}}/edit" method="get">
                         <input type="submit" value="Edit"></form>
                       <form class="action_button" action="/friends/{{friend['id']}}/delete" method="post">
                         <input type="submit" value="Delete"></form></td>

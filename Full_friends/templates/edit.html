@@ -5,18 +5,19 @@
     <title>Edit Friend</title>
   </head>
   <body>
-      {{friend['first_name']}}
-        <!--<form action="/friends/<id>" method="post">
+        <form action="/friends/{{friend['id']}}" method="post">
             <label for="first_name">First Name: </label>
             <input type="text" name="first_name" value={{friend['first_name']}}>
             <br>
             <label for="last_name">Last Name: </label>
-            <input type="text" name="last_name" value={{friend['first_name']}}>
+            <input type="text" name="last_name" value={{friend['last_name']}}>
             <br>
             <label for="email">Email: </label>
-            <input type="email" name="email" value={{friend['first_name']}}>
+            <input type="email" name="email" value={{friend['email']}}>
             <input type="submit" value="Update">
-        </form> -->
+        </form>
 
   </body>
 </html>
+
+<!--/friends/{{friend['id']}}/edit

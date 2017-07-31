@@ -5,7 +5,7 @@ mysql = MySQLConnector(app,'full_friends')
 
 @app.route('/')
 def index():
-    friends = mysql.query_db('SELECT first_name, last_name, email FROM friends')
+    friends = mysql.query_db('SELECT id, first_name, last_name, email FROM friends')
     print friends
     return render_template ('index.html', all_friends=friends)
 
@@ -22,21 +22,28 @@ def create():
 
 @app.route('/friends/<friend_id>/edit')
 def edit(friend_id):
-    query = "SELECT first_name, last_name, email FROM friends WHERE id = :id"
+    query = "SELECT id, first_name, last_name, email FROM friends WHERE id = :id"
     data = {'id': friend_id}
     friend = mysql.query_db(query, data)
     return render_template ('edit.html', friend=friend)
 
-@app.route('/friends/<id>', methods=['POST'])
-def update(id):
+@app.route('/friends/<friend_id>', methods=['POST'])
+def update(friend_id):
     query = "UPDATE friends SET first_name = :first_name, last_name = :last_name, email = :email, updated_at = NOW() WHERE id = :id"
     data = {
         'first_name': request.form['first_name'],
         'last_name': request.form['last_name'],
         'email': request.form['email'],
+        'id': friend_id
     }
-    mysql.query_db(query, data)
+    friend = mysql.query_db(query, data)
     return redirect('/')
 
+@app.route('/friends/<friend_id>/delete', methods=['POST'])
+def destroy(friend_id):
+    query = "DELETE FROM friends WHERE id = :id"
+    data = {'id': friend_id}
+    mysql.query_db(query, data)
+    return redirect('/')
 
 app.run(debug=True)

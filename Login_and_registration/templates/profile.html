@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Profile</title>
+  </head>
+  <body>
+        <h3>User Profile</h3>
+        <table>
+              <thead>
+                    <tr>
+                          <th>First Name</th>
+                          <th>Last Name</th>
+                          <th>Contact</th>
+                    </tr>
+              </thead>
+              <tbody>
+                    {% for info in user_info %}
+                    <tr>
+                          <td>{{info['first_name']}}</td>
+                          <td>{{info['last_name']}}</td>
+                          <td>{{info['email']}}</td>
+                    </tr>
+                    {% endfor %}
+              </tbody>
+        </table>
+  </body>
+</html>
