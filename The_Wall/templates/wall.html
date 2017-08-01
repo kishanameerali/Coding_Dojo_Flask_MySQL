@@ -7,7 +7,7 @@
   <body>
         <header>
               <h2>CodingDojo Wall</h2>
-              <p>Welcome: {{name}}</p>
+              <p>Welcome: {{session['user_first_name']}}</p>
               <a href="/log_off">Log Out</a>
         </header>
         <section>
@@ -22,7 +22,7 @@
                   <p>{{msg['first_name']}} {{msg['last_name']}} {{msg['created_at']}}</p>
                   <p>{{msg['message']}}</p>
                   {% for comm in all_comms %}
-                      {% if(msg['id'] == comm['message_id']) %}
+                      {% if(comm['message_id'] == msg['id']) %}
                           <p>{{comm['first_name']}} {{comm['last_name']}} {{comm['created_at']}}</p>
                           <p>{{comm['comment']}}</p>
                       {% endif %}

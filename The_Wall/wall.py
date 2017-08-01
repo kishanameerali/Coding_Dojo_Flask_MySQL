@@ -100,8 +100,9 @@ def login():
     }
     user = mysql.query_db(query, data)
     session['user_id'] = user[0]['id']
-    name = user[0]['first_name']
+    session['user_first_name'] = user[0]['first_name']
     print session['user_id']
+    print session['user_first_name']
     if bcrypt.check_password_hash(user[0]['password'], request.form['password']):
         return redirect('/wall')
     else:
