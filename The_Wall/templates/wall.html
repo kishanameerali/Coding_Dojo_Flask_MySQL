@@ -22,9 +22,11 @@
                   <p>{{msg['first_name']}} {{msg['last_name']}} {{msg['created_at']}}</p>
                   <p>{{msg['message']}}</p>
                   {% for comm in all_comms %}
-                      <p>{{comm['first_name']}} {{comm['last_name']}} {{comm['created_at']}}</p>
-                      <p>{{comm['comment']}}</p>
-                  (% endfor %)
+                      {% if(msg['id'] == comm['message_id']) %}
+                          <p>{{comm['first_name']}} {{comm['last_name']}} {{comm['created_at']}}</p>
+                          <p>{{comm['comment']}}</p>
+                      {% endif %}
+                  {% endfor %}
                   <form id="comment_post" action="/post_comment" method="post">
                         <p>Post a comment</p>
                         <input type="hidden" name="chosen_msg" value={{msg['id']}}>

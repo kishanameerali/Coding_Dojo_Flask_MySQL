@@ -15,7 +15,8 @@ def index():
 @app.route('/wall')
 def message_history():
     msgs = mysql.query_db('SELECT users.first_name, users.last_name, messages.id, messages.message, messages.created_at FROM messages JOIN users ON users.id = messages.user_id ORDER BY messages.created_at DESC')
-    return render_template('wall.html', all_msgs = msgs)
+    comms = mysql.query_db('SELECT users.first_name, users.last_name, comments.message_id, comments.comment, comments.created_at FROM comments JOIN users ON comments.user_id = user_id JOIN messages ON messages.id = comments.message_id')
+    return render_template('wall.html', all_msgs = msgs, all_comms = comms)
 
 @app.route('/post_message', methods=['POST'])
 def create():
@@ -24,8 +25,7 @@ def create():
         'user_id': session['user_id'],
         'message': request.form['posted_message']
     }
-    message_id = mysql.query_db(query, data)
-    print message_id
+    mysql.query_db(query, data)
     return redirect('/wall')
 
 @app.route('/post_comment', methods=['POST'])
