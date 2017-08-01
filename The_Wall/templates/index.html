@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>WALL: Login or Register</title>
+  </head>
+  <body>
+        <header>
+              <h2>CodingDojo Wall</h2>
+              <p>Please register or login below</p>
+        </header>
+        <section>
+              <h2>Please Register Below: </h2>
+              {% with messages = get_flashed_messages() %}
+                  {% if messages %}
+                    <ul>
+                        {% for message in messages %}
+                            <li>{{message}}</li>
+                        {% endfor %}
+                    </ul>
+                  {% endif %}
+              {% endwith %}
+              <form id="register" action="/registered" method="post">
+                    <label for="first_name">First Name: </label>
+                    <input type="text" name="first_name">
+                    <label for="last_name">Last Name: </label>
+                    <input type="text" name="last_name">
+                    <label for="email">Email: </label>
+                    <input type="email" name="email">
+                    <label for="password">Password: </label>
+                    <input type="password" name="password">
+                    <label for="confirm_password">Confirm Password: </label>
+                    <input type="password" name="confirm_password">
+                    <input type="submit" name="submit" value="Register">
+              </form>
+              <h2>Already Registered Please Login: </h2>
+              <form id="login" action="/login" method="post">
+                    <label for="email">Email: </label>
+                    <input type="email" name="email">
+                    <label for="password">Password: </label>
+                    <input type="password" name="password">
+                    <input type="submit" name="submit" value="Login">
+              </form>
+        </section>
+  </body>
+</html>
