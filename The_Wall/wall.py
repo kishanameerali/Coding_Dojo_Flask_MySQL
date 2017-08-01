@@ -14,7 +14,7 @@ def index():
 
 @app.route('/wall')
 def message_history():
-    msgs = mysql.query_db('SELECT users.first_name, users.last_name, messages.message, messages.created_at FROM messages JOIN users ON users.id = messages.user_id ORDER BY messages.created_at DESC')
+    msgs = mysql.query_db('SELECT users.first_name, users.last_name, messages.id, messages.message, messages.created_at FROM messages JOIN users ON users.id = messages.user_id ORDER BY messages.created_at DESC')
     return render_template('wall.html', all_msgs = msgs)
 
 @app.route('/post_message', methods=['POST'])
