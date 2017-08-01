@@ -15,7 +15,7 @@ def index():
 @app.route('/wall')
 def message_history():
     msgs = mysql.query_db('SELECT users.first_name, users.last_name, messages.id, messages.message, messages.created_at FROM messages JOIN users ON users.id = messages.user_id ORDER BY messages.created_at DESC')
-    comms = mysql.query_db('SELECT users.first_name, users.last_name, comments.message_id, comments.comment, comments.created_at FROM comments JOIN users ON comments.user_id = user_id JOIN messages ON messages.id = comments.message_id')
+    comms = mysql.query_db('SELECT comments.id, users.first_name, users.last_name, comments.message_id, comments.comment, comments.created_at FROM comments JOIN messages ON comments.message_id = messages.id JOIN users ON comments.user_id = users.id')
     return render_template('wall.html', all_msgs = msgs, all_comms = comms)
 
 @app.route('/post_message', methods=['POST'])

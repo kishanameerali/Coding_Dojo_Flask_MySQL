@@ -29,7 +29,7 @@
                   {% endfor %}
                   <form id="comment_post" action="/post_comment" method="post">
                         <p>Post a comment</p>
-                        <input type="hidden" name="chosen_msg" value={{msg['id']}}>
+                        <input type="hidden" name="chosen_msg" value="{{msg['id']}}">
                         <textarea name="posted_comment" rows="8" cols="80"></textarea>
                         <input type="submit" value="Post a comment">
                   </form>
